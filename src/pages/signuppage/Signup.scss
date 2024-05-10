@@ -1,0 +1,58 @@
+.signup{
+    width:100vw;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin-top: 15%;
+    .signup-box{
+        border:2px solid yellowgreen;
+        
+        min-width: 400px;
+        min-height: 300px;
+        padding:40px;
+        border-radius:5%;
+    }
+    label,input{
+        display:block;
+        width:100%;
+
+    }
+    label{
+        padding: 10px;
+        font-weight: bold;
+    }
+    .password
+    {
+        height:35px;
+    }
+    .email
+    {
+        height:35px;
+    }
+    .name
+    {
+        height:35px;
+    }
+    .submit{
+        background-color: green;
+        margin-top: 25px;
+        height:35px;
+        border-radius: 10px;
+    }
+    .submit:hover{
+        background-color: blue;
+       cursor: pointer;
+    }
+    .heading{
+        color:green;
+        display: flex;
+        justify-content: center;
+    }
+    .subheading{
+        margin-top: 16px;
+    }
+    .subheading Link{
+        text-decoration: none;
+    }
+}
