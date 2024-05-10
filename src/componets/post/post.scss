@@ -1,0 +1,45 @@
+.post{
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+    .header{
+        width:30%;
+        display: flex;
+        align-items: center;
+        justify-content:space-around;
+        margin: 30px;
+    }
+    .content{
+        width:100%;
+        img{
+            width:90%;
+            height:400px;
+            object-fit: fill;
+            padding-inline: 5%;
+            
+        }
+    }
+    .footer{
+        
+        padding: 20px;;
+        .like-section{
+            width:20%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .like-btn{
+                font-size:2em;
+                color: blue;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+        .caption{
+            font-style: italic;
+            font-weight: 400;
+            padding-block: 5px;
+        }
+    }
+}

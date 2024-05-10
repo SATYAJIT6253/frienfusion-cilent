@@ -26,12 +26,12 @@ axiosClient.interceptors.response.use(
         const originalrequest = response.config;
         const stausCode = data.statusCode;
         const error = data.error;
-        if(stausCode === 401 && originalrequest.url === "http://localhost:4000/auth/refersh")
-        {
-            removeItem(KEY_ACESS_TOKEN);
-            window.location.replace('./login','_self');
-            return Promise.reject(error);
-        }
+        // if(stausCode === 401 && originalrequest.url === "http://localhost:4000/auth/refersh")
+        // {
+        //     removeItem(KEY_ACESS_TOKEN);
+        //     window.location.replace('./login','_self');
+        //     return Promise.reject(error);
+        // }
         if(stausCode === 401 && !originalrequest._retry){
             originalrequest._retry = true;
             const response = await axiosClient.get('/auth/refersh');
@@ -42,8 +42,12 @@ axiosClient.interceptors.response.use(
                 // console.log(response.result.acesstoken);
                 originalrequest.headers['Authorization'] = `Bearer ${response.result.acesstoken}`;
                 return axios(originalrequest);
+            }else{
+                removeItem(KEY_ACESS_TOKEN);
+                window.location.replace('./login','_self');
+                return Promise.reject(error);
             }
-             return Promise.reject(error);
+             
         }
         
     }

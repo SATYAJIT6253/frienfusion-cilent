@@ -1,0 +1,47 @@
+.navbar {
+ 
+    .container {
+        position: fixed;
+        top:0;
+        width: 970px;
+        display: flex;
+        // border:2px solid red;
+        // background-color: #EFECEC;
+        justify-content: space-around;
+        background-color: #faff00;
+        background-image: linear-gradient(319deg, #faff00 0%, #ff1000 37%, #ff6a00 100%);
+        align-items: center;
+        margin-inline: 17%;
+        height: 60px;
+
+        .leftside {
+            .banner {
+                color: #7cfc00;
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .rightside {
+            width: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            .logout-cont{
+                .logout-btn {
+                    font-size: 1.5em;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+
+            }
+            
+
+        }
+
+        
+        }
+    }

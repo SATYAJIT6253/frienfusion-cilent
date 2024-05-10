@@ -1,0 +1,64 @@
+.submit-btn{
+    
+    display: block;
+    font-weight: 200;
+    letter-spacing: 1px;
+    color:black;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    cursor: pointer;
+    outline: none;
+    aspect-ratio: 3;
+    font-size: 1em;
+    margin-inline: auto;
+    width:14%;
+    border:1px solid greenyellow;
+    background-color: rgba(0, 0, 255, 0.801);
+}
+.updateprofile{
+    margin-top:70px;
+    max-width:80%;
+    margin-inline: auto;
+    .container{
+        margin-inline: auto;
+      
+        display:flex;
+        .left-section{
+            
+            flex:1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            img{
+                width:100px;
+                height:100px;
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+        .right-section{
+           
+            flex:2;
+            .update-form{
+                input{
+                    display: block;
+                    width:90%;
+                    height:2.5em;
+                    margin: 5px;
+                    text-align: center;
+                    border-radius: 10%;
+                    background-color: rgba(240, 248, 255, 0.785);
+                }
+            }
+            .delet-btn{
+                background-color: rgba(255, 0, 0, 0.628);
+                width:20%;
+                aspect-ratio: 4;
+                margin-top: 10px;
+            }
+            
+
+        }
+    }
+}
