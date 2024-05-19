@@ -3,10 +3,10 @@ import axios from 'axios';
 import { getItem, removeItem, setItem } from './localStoragemanager';
 import { KEY_ACESS_TOKEN } from './localStoragemanager';
 export const axiosClient = axios.create({
-    baseURL:'http://localhost:4000',
+    baseURL:'https://friendfusion-v925.onrender.com',
     withCredentials:true,
 });
-
+let  baseURL = 'https://friendfusion-v925.onrender.com'
 axiosClient.interceptors.request.use(
     (request)=>{
         const acesstoken = getItem(KEY_ACESS_TOKEN);
@@ -34,7 +34,7 @@ axiosClient.interceptors.response.use(
         // }
         if(stausCode === 401 && !originalrequest._retry){
             originalrequest._retry = true;
-            const response = await axiosClient.get('/auth/refersh');
+            const response = await axios.create({withCredentials :true}).get(`${baseURL}/auth/refersh`);
             console.log("response from backend",response);
             if(response.status === 'ok'){
                 

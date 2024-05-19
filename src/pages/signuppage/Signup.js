@@ -11,7 +11,7 @@ function Signup()
     event.preventDefault();
     try {
       const result = await axiosClient.post('/auth/signup', {
-        email, password
+        name,email, password
       });
       console.log(result);
     } catch (error) {

@@ -3,14 +3,15 @@ import "./navbar.scss";
 import Avtar from "../avtar/Avtar";
 import { FiLogOut } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setloading } from "../../Redux/slices/appConfigure";
 
 
 function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  
+  const myprofile = useSelector(state=>state.appconfigreducer.myProfile);
+  console.log("muprofile is ",myprofile);
   function changeloadingbar() {
     dispatch(setloading(true));
   }
@@ -23,8 +24,8 @@ function Navbar() {
             Socialmedia
           </h2>
         </div>
-        <div className="rightside">
-          <div onClick={() => navigate("/profile/:gfdff")}>
+        <div className="rightside" onClick={()=>navigate(`/profile/${myprofile?._id}`)}>
+          <div >
             <Avtar />
           </div>
 

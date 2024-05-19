@@ -1,4 +1,4 @@
-export const KEY_ACESS_TOKEN = "acess_token";
+export const KEY_ACESS_TOKEN = "acesstoken";
 
 // this function is called  when a person is logged in or not for checking puprpose
 export function getItem(key){

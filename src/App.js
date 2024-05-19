@@ -25,17 +25,17 @@ function App() {
   return (
       
     <div className="App">
-      <LoadingBar color='#00FF00' ref={loadingRef} loaderSpeed={0.5} height={2}/>
+      <LoadingBar color="#000" ref={loadingRef} />
       <Routes>
-        <Route>
+        <Route element={<RequireUser/>} >
           <Route element={<Home />}>
             <Route path="/" element={<Feed/>} />
             <Route path="/profile/:userid" element={<Profile/>}/>
             <Route path="/updateprofile" element={<Updateprofile/>}/>
           </Route>
         </Route>
-        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />}/>
+        <Route path="/login" element={<Login />} />
       </Routes>
     </div>
   );
