@@ -16,7 +16,7 @@ export const updateprofile = createAsyncThunk('/user/updatemyprofile',async(body
     try {
         thunkAPI.dispatch(setloading(true));
         const response = await axiosClient.put('/user/upadtemyprofile');
-        console.log("data from api",response.result);
+        console.log("data from updateprofile api",response.result);
         return response.result;
     } catch (error) {
         return Promise.reject(error)
@@ -36,7 +36,11 @@ export const appConfigSlice = createSlice({
         }
     },
     extraReducers : (builder)=>{
-        builder.addCase(getmyinformation.fulfilled,(state,action)=>{
+        builder.
+        addCase(getmyinformation.fulfilled,(state,action)=>{
+            state.myProfile = action.payload.user
+        }).
+        addCase(updateprofile.fulfilled,(state,action)=>{
             state.myProfile = action.payload.user
         })
     }

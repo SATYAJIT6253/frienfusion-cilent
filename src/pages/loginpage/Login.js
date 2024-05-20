@@ -10,11 +10,11 @@ function Login() {
   const navigate = useNavigate();
   async function handelsubmit(event) {
     event.preventDefault();
-    const result = await axiosClient.post('/auth/login', {
-      email, password
-    });
+   
     try {
-
+      const result = await axiosClient.post('/auth/login', {
+        email, password
+      });
       setItem(KEY_ACESS_TOKEN, result.result.acesstoken);
       navigate('/');
       // console.log("result is ",result.result.acesstoken);
