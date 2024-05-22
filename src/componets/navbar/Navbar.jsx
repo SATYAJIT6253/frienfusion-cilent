@@ -11,7 +11,7 @@ function Navbar() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const myprofile = useSelector(state=>state.appconfigreducer.myProfile);
-  console.log("muprofile is ",myprofile);
+  // console.log("muprofile is ",myprofile);
   function changeloadingbar() {
     dispatch(setloading(true));
   }

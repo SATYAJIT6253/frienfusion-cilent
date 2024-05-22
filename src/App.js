@@ -30,7 +30,7 @@ function App() {
         <Route element={<RequireUser/>} >
           <Route element={<Home />}>
             <Route path="/" element={<Feed/>} />
-            <Route path="/profile/:userid" element={<Profile/>}/>
+            <Route path="/profile/:userId" element={<Profile/>}/>
             <Route path="/updateprofile" element={<Updateprofile/>}/>
           </Route>
         </Route>

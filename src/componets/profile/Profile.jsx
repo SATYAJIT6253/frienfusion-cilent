@@ -1,34 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import userimg from "../../images/avtar.png";
 import Post from "../post/Post";
-import './profile.scss';
-import { useNavigate } from "react-router-dom";
-import { useDispatch,useSelector } from "react-redux";
+import "./profile.scss";
+import { useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import CreatePost from "../ceatepost/CreatePost";
+import { getuserinformation } from "../../Redux/slices/postConfigure";
+import { axiosClient } from "../../pages/utils/axiosCilent";
 function Profile() {
   const navigate = useNavigate();
-  
+  const [ismyProfile, setIsMyProfile] = useState(false);
   const myprofile = useSelector((state) => state.appconfigreducer.myProfile);
   const avtar = myprofile?.avatar?.url;
+  const dispatch = useDispatch();
+  const params = useParams();
+  const userProfile = useSelector(
+    (state) => state.postConfigreducer.userProfile
+  );
+
+  useEffect(() => {
+    // fetchdata({userId : params.userId})
+    dispatch(getuserinformation({ userId: params?.userId }));
+    console.log(userProfile);
+    setIsMyProfile(myprofile?._id === params.userId);
+  }, []);
   return (
     <div className="Profile">
       <div className="container">
         <div className="left-part">
-          <Post/>
-          <Post/>
-          <Post/>
-
+          <CreatePost />
+          <Post />
+          <Post />
+          <Post />
         </div>
         <div className="right-part">
           <div className="profile-card">
-            <img className="user-img" src={avtar || userimg} alt="" />
-            <h2 className="user-name">satyajit sahoo</h2>
+            <img className="user-img" src={userProfile?.avatar?.url} alt="" />
+            <h2 className="user-name">{userProfile?.name}</h2>
 
             <div className="follower-info">
-              <h4>40 followers</h4>
-              <h4>12 Followings</h4>
+              <h4>{userProfile?.followers?.length} followers</h4>
+              <h4>{userProfile?.followings?.length} following</h4>
             </div>
-            <button className="follow-btn">follow</button>
-            <button className="update-btn" onClick={()=> navigate('/updateprofile')}>update profile</button>
+            {!ismyProfile && <button className="follow-btn">follow</button>}
+            {ismyProfile && (
+              <button
+                className="update-btn"
+                onClick={() => navigate("/updateprofile")}
+              >
+                update profile
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ function Updateprofile() {
   const myprofile = useSelector((state) => state.appconfigreducer.myProfile);
   const [name, setname] = useState("");
   const [bio, setbio] = useState("");
-  const [UserImg, setUserImg] = useState("");
+  const [Userimg, setUserImg] = useState("");
   const dispatch = useDispatch();
   function handleImageChange(e) {
     const file = e.target.files[0];
@@ -18,7 +18,7 @@ function Updateprofile() {
       fileReader.onload = () => {
         if (fileReader.readyState === fileReader.DONE) {
           setUserImg(fileReader.result);
-          console.log("img data", fileReader.result);
+          // console.log("img data", fileReader.result);
         }
       };
     }
@@ -27,7 +27,7 @@ function Updateprofile() {
   {
       
       dispatch(updateprofile({
-        name,bio,UserImg
+        name,bio,Userimg
       }))
 
   }
@@ -42,7 +42,7 @@ function Updateprofile() {
         <div className="left-section">
           <div className="input-user-img">
             <label htmlFor="inputImg" className="labelImg">
-              <img src={UserImg ? UserImg : userimg} alt={name} />
+              <img src={Userimg} alt={name} />
             </label>
             <input
               className="inputImg"
