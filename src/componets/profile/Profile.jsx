@@ -19,19 +19,28 @@ function Profile() {
   );
 
   useEffect(() => {
-    // fetchdata({userId : params.userId})
+    
     dispatch(getuserinformation({ userId: params?.userId }));
-    console.log(userProfile);
+    // console.log(userProfile?.posts);
     setIsMyProfile(myprofile?._id === params.userId);
-  }, []);
+  }, [myprofile,params.userId]);
   return (
     <div className="Profile">
       <div className="container">
         <div className="left-part">
           <CreatePost />
-          <Post />
-          <Post />
-          <Post />
+          {
+            userProfile?.posts?.length ? 
+            (
+              userProfile?.posts.map(post => <Post post= {post} key={post._id}/>)
+            )
+            :
+            (
+              <div>no post is uploaded by this user</div>
+            )
+            
+          }
+          
         </div>
         <div className="right-part">
           <div className="profile-card">

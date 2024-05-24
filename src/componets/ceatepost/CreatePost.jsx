@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./createpost.scss";
 import Avtar from "../avtar/Avtar";
 import { BsCardImage } from "react-icons/bs";
 // import postimg from "../../images/postimg.png";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { axiosClient } from "../../pages/utils/axiosCilent";
 import { setloading } from "../../Redux/slices/appConfigure";
+import { getuserinformation } from "../../Redux/slices/postConfigure";
 function CreatePost() {
-  const [postImg, setpostImg] = useState("https://th.bing.com/th/id/OIP.Dp8Ksv1GFNZFpcdi3jXY_AAAAA?w=474&h=355&rs=1&pid=ImgDetMain");
+  const [postImg, setpostImg] = useState("");
   const [caption, setCaption] = useState("");
+  const myprofile = useSelector((state) => state.appconfigreducer.myProfile);
   const dispatch = useDispatch();
   function handleImageChange(e) {
     const file = e.target.files[0];
@@ -17,20 +19,19 @@ function CreatePost() {
     fileReader.onload = () => {
       if (fileReader.readyState === fileReader.DONE) {
         setpostImg(fileReader.result);
-        console.log("img data", fileReader.result);
+        // console.log("img data", fileReader.result);
       }
     };
   }
   async function postHandler() {
     try {
       dispatch(setloading(true));
-      console.log("caption is",caption);
-      console.log("postimage is",postImg);
       const result = await axiosClient.post('/posts', {
         caption,
         postImg
     });
-      // console.log("post is", response);
+      // console.log("post is",result);
+      dispatch(getuserinformation({ userId: myprofile?._id }));
     } catch (error) {
       console.log(error);
     } finally {
@@ -38,6 +39,7 @@ function CreatePost() {
       setpostImg("");
     }
   }
+  
   return (
     <div className="createpost">
       <div className="left-section">

@@ -22,10 +22,7 @@ useEffect(()=>{
     <div className="feed">
       <div className="container">
         <div className="left-part">
-          <Post />
-          <Post/>
-          <Post />
-          <Post/>
+          post section it is
          
 
         </div>

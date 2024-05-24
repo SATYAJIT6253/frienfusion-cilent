@@ -2,25 +2,40 @@ import React from "react";
 import "./post.scss";
 import Avtar from "../avtar/Avtar";
 import postimg from '../../images/postimg.png';
+import { useState } from "react";
 import {BiLike} from 'react-icons/bi';
-function Post() {
+import { BiSolidLike } from "react-icons/bi";
+import { useDispatch } from "react-redux";
+import { likeandunlikepost } from "../../Redux/slices/postConfigure";
+function Post({post}) {
+  const dispatch = useDispatch();
+  async function postlikehandeker() 
+  {
+      dispatch(likeandunlikepost({
+        postId : post._id
+      }))
+      
+  }
+  
   return (
     <div className="post">
       <div className="container">
         <div className="header">
             <Avtar/>
-            <h3>satyajit sahoo</h3>
+            <h3>{post?.owner?.name}</h3>
         </div>
         <div className="content">
-            <img  src={postimg} alt="" />
+            <img  src={post?.image?.url} alt="" />
         </div>
         <div className="footer">
-          <div className="like-section">
-            <BiLike className="like-btn"/>
-            <h4>4 likes</h4>
+          <div className="like-section" onClick={postlikehandeker}>
+            {
+              post.isliked ? (<BiSolidLike className="like-btn" />) : (<BiLike className="like-btn" />)
+            }
+            <h4 >{post?.likescnt}likes</h4>
           </div>
-          <p className="caption">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia labore nemo totam ab dolorum, voluptatum illum incidunt, porro similique, officia omnis perferendis!</p>
-          <h4>4hr ago</h4>
+          <p className="caption">{post?.caption}</p>
+          <h4>{post?.timeago}</h4>
         </div>
       </div>
     </div>

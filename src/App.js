@@ -9,6 +9,7 @@ import Updateprofile from "./componets/updateprofile/Updateprofile";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import LoadingBar from 'react-top-loading-bar';
+import RequireLogin from "./componets/RequireLogin";
 
 
 function App() {
@@ -34,8 +35,10 @@ function App() {
             <Route path="/updateprofile" element={<Updateprofile/>}/>
           </Route>
         </Route>
-        <Route path="/signup" element={<Signup />}/>
+        <Route element={<RequireLogin/>}>
+          <Route path="/signup" element={<Signup />}/>
         <Route path="/login" element={<Login />} />
+        </Route>
       </Routes>
     </div>
   );

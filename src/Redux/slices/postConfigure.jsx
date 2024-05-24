@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {axiosClient} from'../../pages/utils/axiosCilent';
-import { setloading } from "./appConfigure";
+
 export const getuserinformation = createAsyncThunk('user/getuserprofile',async(body)=>{
         try {
            
@@ -12,6 +12,16 @@ export const getuserinformation = createAsyncThunk('user/getuserprofile',async(b
         }
 })
 
+export const likeandunlikepost = createAsyncThunk('posts/like',async(body)=>{
+    try {
+       
+        const response = await axiosClient.post('/posts/like',body);
+        // console.log("response from likeunlike api",response);
+        return response.result.post;
+    } catch (error) {
+        return Promise.reject(error);
+    }
+})
 export const postConfigSlice = createSlice({
     name :'postConfigSlice',
     initialState:{
@@ -22,6 +32,16 @@ export const postConfigSlice = createSlice({
         builder.
         addCase(getuserinformation.fulfilled,(state,action)=>{
             state.userProfile = action.payload
+        })
+        .addCase(likeandunlikepost.fulfilled,(state,action)=>{
+            const post = action.payload;
+            const index = state?.userProfile?.posts?.findIndex((item) => item._id === post._id)
+            console.log(state.userProfile?.posts);
+            console.log("index is",post,index);
+            if (index != undefined && index != -1) {
+                state.userProfile.posts[index] = post;
+            }
+            
         })
         
     }
