@@ -4,48 +4,36 @@ import { useEffect } from "react";
 import Post from "../post/Post";
 import Follwer from "./follower/Follwer";
 import { axiosClient } from "../../pages/utils/axiosCilent";
+import { useDispatch, useSelector } from "react-redux";
+import { getfeedData } from "../../Redux/slices/feedConfigure";
 function Feed() {
-  const[result,setresult] = useState([]);
-  async function fetchData()
-  {
-    const response = await axiosClient.get('/user/getmyinformation');
-    // console.log(" response is ",response);
-    setresult(response);
-   
-  }
-  
+  const dispatch = useDispatch();
+  const feedData = useSelector((state)=> state.feedConfigreducer.feedProfile);
+
 useEffect(()=>{
-  fetchData();
-},[])
+  dispatch(getfeedData())
+  
+},[dispatch])
   
   return (
     <div className="feed">
       <div className="container">
         <div className="left-part">
-          post section it is
+          {
+            feedData?.posts?.map(post => <Post post={post} key={post._id}/>)
+          }
          
 
         </div>
         <div className="right-part">
           <div className="following">
             <h2 className="title">You are folllowing</h2>
-            <Follwer/>
-            <Follwer/>
-            <Follwer/>
-            <Follwer/>
-            <Follwer/>
-            <Follwer/>
+            {feedData?.followings?.map(user => <Follwer key={user._id} user={user}/>)}
            
           </div>
           <div className="suggestion">
             <h2 className="title">suggestion for you</h2>
-            <Follwer/>
-            <Follwer/>
-            <Follwer/>
-            <Follwer/>
-            <Follwer/>
-            <Follwer/>
-            <Follwer/>
+            {feedData?.suggestions?.map(user => <Follwer key={user._id} user={user}/>)}
           </div>
         </div>
       </div>

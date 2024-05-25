@@ -5,7 +5,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 function RequireLogin() {
     const user = getItem(KEY_ACESS_TOKEN);
   return (
-    user ? <Navigate to = "/"/> : <Outlet/>
+    user ? <Navigate to = "/login"/> : <Outlet/>
   )
 }
 

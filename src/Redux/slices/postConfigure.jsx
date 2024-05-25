@@ -36,8 +36,8 @@ export const postConfigSlice = createSlice({
         .addCase(likeandunlikepost.fulfilled,(state,action)=>{
             const post = action.payload;
             const index = state?.userProfile?.posts?.findIndex((item) => item._id === post._id)
-            console.log(state.userProfile?.posts);
-            console.log("index is",post,index);
+           
+            // console.log("index is",post,index);
             if (index != undefined && index != -1) {
                 state.userProfile.posts[index] = post;
             }
