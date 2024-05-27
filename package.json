@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "16": "^0.0.2",
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -19,9 +20,9 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-scripts start --openssl-legacy-provider",
+    "build": "react-scripts build --openssl-legacy-provider",
+    "test": "react-scripts test --openssl-legacy-provider",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
