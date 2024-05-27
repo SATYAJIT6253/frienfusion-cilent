@@ -7,8 +7,10 @@ import {BiLike} from 'react-icons/bi';
 import { BiSolidLike } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { likeandunlikepost } from "../../Redux/slices/postConfigure";
+import { useNavigate } from "react-router-dom";
 function Post({post}) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   async function postlikehandeker() 
   {
       dispatch(likeandunlikepost({
@@ -20,8 +22,8 @@ function Post({post}) {
   return (
     <div className="post">
       <div className="container">
-        <div className="header">
-            <Avtar/>
+        <div className="header" onClick={() => {navigate(`/profile/${post?.owner?._id}`)}}>
+            <Avtar src={post?.owner?.avatar?.url}/>
             <h3>{post?.owner?.name}</h3>
         </div>
         <div className="content">

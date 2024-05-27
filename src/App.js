@@ -35,7 +35,7 @@ function App() {
             <Route path="/updateprofile" element={<Updateprofile/>}/>
           </Route>
         </Route>
-        <Route element={<RequireLogin/>}>
+        <Route >
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />}/>
           

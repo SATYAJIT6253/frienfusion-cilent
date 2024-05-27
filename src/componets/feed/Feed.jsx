@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getfeedData } from "../../Redux/slices/feedConfigure";
 function Feed() {
   const dispatch = useDispatch();
-  const feedData = useSelector((state)=> state.feedConfigreducer.feedProfile);
+  const feedData = useSelector((state)=> state.feedConfigreducer.feedData);
 
 useEffect(()=>{
   dispatch(getfeedData())
@@ -28,7 +28,7 @@ useEffect(()=>{
         <div className="right-part">
           <div className="following">
             <h2 className="title">You are folllowing</h2>
-            {feedData?.followings?.map(user => <Follwer key={user._id} user={user}/>)}
+            {feedData?.followings?.map(user => <Follwer  key={user._id} user={user} />)}
            
           </div>
           <div className="suggestion">

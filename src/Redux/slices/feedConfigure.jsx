@@ -12,7 +12,7 @@ export const getfeedData = createAsyncThunk('user/getfeedData',async()=>{
         }
 })
 
-export const followunfollow = createAsyncThunk('user/follow',async(body)=>{
+export const followunfollowuser = createAsyncThunk('user/followunfollowuser',async(body)=>{
     try {
        
         const response = await axiosClient.post('/user/follow',body);
@@ -26,31 +26,34 @@ export const followunfollow = createAsyncThunk('user/follow',async(body)=>{
 export const feedConfigSlice = createSlice({
     name :'feedConfigSlice',
     initialState:{
-        feedProfile : {} ,
+        feedData : {} ,
     },
    extraReducers : (builder)=>{
         builder.
         addCase(getfeedData.fulfilled,(state,action)=>{
-            state.feedProfile = action.payload
+            state.feedData = action.payload
         })
         .addCase(likeandunlikepost.fulfilled,(state,action)=>{
             const post = action.payload;
-            const index = state?.feedProfile?.posts?.findIndex((item) => item._id === post._id)
+            const index = state?.feedData?.posts?.findIndex((item) => item._id === post._id)
             
             // console.log("index is",post,index);
             if (index != undefined && index != -1) {
-                state.feedProfile.posts[index] = post;
+                state.feedData.posts[index] = post;
             }
             
         })
-        .addCase(followunfollow.fulfilled, (state, action) => {
+        .addCase(followunfollowuser.fulfilled, (state, action) => {
             const user = action.payload;
-            const index = state?.feedProfile?.followings.findIndex((item) => item._id == user._id);
+            const index = state?.feedData?.followings.findIndex(item => item._id == user._id);
             if(index != -1) {
-                state?.feedProfile.followings.splice(index, 1);
+                state?.feedData. followings.splice(index, 1);
+                state?.feedData.suggestions.push(user);
             } else {
-                state?.feedProfile.followings.push(user);
+                state?.feedData.followings.push(user);
+                state?.feedData.suggestions.splice(index, 1);
             }
+
         })
         
         
