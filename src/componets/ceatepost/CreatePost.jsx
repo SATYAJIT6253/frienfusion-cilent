@@ -5,8 +5,9 @@ import { BsCardImage } from "react-icons/bs";
 // import postimg from "../../images/postimg.png";
 import { useDispatch,useSelector } from "react-redux";
 import { axiosClient } from "../../pages/utils/axiosCilent";
-import { setloading } from "../../Redux/slices/appConfigure";
+import { setloading, showToast } from "../../Redux/slices/appConfigure";
 import { getuserinformation } from "../../Redux/slices/postConfigure";
+import { TOAST_FAILURE, TOAST_SUCCESS } from "../../App";
 function CreatePost() {
   const [postImg, setpostImg] = useState("");
   const [caption, setCaption] = useState("");
@@ -32,7 +33,13 @@ function CreatePost() {
     });
       // console.log("post is",result);
       dispatch(getuserinformation({ userId: myprofile?._id }));
+      dispatch(showToast({
+        type:TOAST_SUCCESS,
+        message:"post created sucessfully"
+      }))
+      dispatch(setloading(false));
     } catch (error) {
+      
       console.log(error);
     } finally {
       setCaption("");
@@ -83,7 +90,8 @@ function CreatePost() {
           </div>
           <button className="post-btn button-62" onClick={postHandler}>
             Post
-          </button>
+          </button >
+          <button className="post-btn button-62" >delete post</button>
         </div>
       </div>
     </div>

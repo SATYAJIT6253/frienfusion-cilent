@@ -10,12 +10,16 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import LoadingBar from 'react-top-loading-bar';
 import RequireLogin from "./componets/RequireLogin";
+import toast, { Toaster } from "react-hot-toast";
 
+export const TOAST_SUCCESS = "toast_success";
+export const TOAST_FAILURE = "toast_failure";
 
 function App() {
 
     const isloading = useSelector(state=>state.appconfigreducer.isloading);
     const loadingRef = useRef(null);
+    const toastdata = useSelector(state=> state.appconfigreducer.toastdata);
     useEffect(()=>{
       if (isloading) {
         loadingRef.current?.continuousStart();
@@ -23,6 +27,25 @@ function App() {
         loadingRef.current?.complete();
       }
     },[isloading])
+    useEffect(()=>{
+      switch (toastdata.type) 
+      {
+        case TOAST_SUCCESS:
+            toast.success(toastdata.message);
+            break;
+        case TOAST_FAILURE:
+            toast.error(toastdata.message);
+            break;
+       
+      }
+      // if(toastdata.type == TOAST_SUCCESS)
+      //   {
+      //     toast.success(toastdata.message);
+      //   }else if(toastdata.type == TOAST_FAILURE)
+      //   {
+      //       toast.error(toastdata.message);
+      //   }
+    },[toastdata])
   return (
       
     <div className="App">

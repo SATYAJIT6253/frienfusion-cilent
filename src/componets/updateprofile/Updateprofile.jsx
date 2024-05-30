@@ -2,13 +2,19 @@ import React, { useEffect, useState } from "react";
 import "./updateprofile.scss";
 import userimg from "../../images/avtar.png";
 import { useDispatch, useSelector } from "react-redux";
-import { updateprofile } from "../../Redux/slices/appConfigure";
+import { showToast, updateprofile } from "../../Redux/slices/appConfigure";
+import { axiosClient } from "../../pages/utils/axiosCilent";
+import { KEY_ACESS_TOKEN, removeItem } from "../../pages/utils/localStoragemanager";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { TOAST_FAILURE } from "../../App";
 function Updateprofile() {
   const myprofile = useSelector((state) => state.appconfigreducer.myProfile);
   const [name, setname] = useState("");
   const [bio, setbio] = useState("");
   const [Userimg, setUserImg] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   function handleImageChange(e) {
     const file = e.target.files[0];
     const fileReader = new FileReader();
@@ -30,6 +36,20 @@ function Updateprofile() {
         name,bio,Userimg
       }))
 
+  }
+  async function deleteaccounthandeler() {
+      try {
+         
+          await axiosClient.delete('/user/');
+          removeItem(KEY_ACESS_TOKEN);
+          navigate('/signup');
+          dispatch(showToast({
+            type:TOAST_FAILURE,
+            message:"account deleted sucessfully"
+          }))
+      } catch (error) {
+        console.log(error);
+      }
   }
   useEffect(() => {
     setname(myprofile?.name);
@@ -76,7 +96,9 @@ function Updateprofile() {
               Submit
             </button>
           </form>
-          <button className="submit-btn delet-btn">Delete account</button>
+          <button className="submit-btn delet-btn" onClick={deleteaccounthandeler}>
+            Delete account
+            </button>
         </div>
       </div>
     </div>

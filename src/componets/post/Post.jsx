@@ -8,13 +8,22 @@ import { BiSolidLike } from "react-icons/bi";
 import { useDispatch } from "react-redux";
 import { likeandunlikepost } from "../../Redux/slices/postConfigure";
 import { useNavigate } from "react-router-dom";
+import { showToast } from "../../Redux/slices/appConfigure";
+import { TOAST_SUCCESS } from "../../App";
+import toast, { Toaster } from 'react-hot-toast'
+
 function Post({post}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   async function postlikehandeker() 
   {
+     
       dispatch(likeandunlikepost({
         postId : post._id
+      }))
+      dispatch(showToast({
+        type : TOAST_SUCCESS,
+        message : "post liked or unliked"
       }))
       
   }
@@ -34,6 +43,7 @@ function Post({post}) {
             {
               post.isliked ? (<BiSolidLike className="like-btn" />) : (<BiLike className="like-btn" />)
             }
+            <Toaster/>
             <h4 >{post?.likescnt}likes</h4>
           </div>
           <p className="caption">{post?.caption}</p>

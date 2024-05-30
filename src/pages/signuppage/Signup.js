@@ -1,22 +1,31 @@
 import React, { useState } from 'react'
 import './Signup.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { axiosClient } from '../utils/axiosCilent';
+import { useDispatch } from 'react-redux';
+import { showToast } from '../../Redux/slices/appConfigure';
+import { TOAST_FAILURE, TOAST_SUCCESS } from '../../App';
+import { Toaster } from 'react-hot-toast';
 function Signup() 
 {
   const[name,setname] = useState('');
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   async function handelsubmit(event) {
     event.preventDefault();
     try {
       const result = await axiosClient.post('/auth/signup', {
         name,email, password
       });
-      console.log(result);
+      dispatch(showToast({
+        type:TOAST_SUCCESS,
+        message : result.result
+      }))
+      navigate("/login");
     } catch (error) {
       console.log(error);
-      console.log(error.message);
     }
   }
     return (
@@ -41,6 +50,7 @@ function Signup()
             <p className="subheading">Already have an account <Link to="/login">Login</Link></p>
           </form>
         </div>
+        <Toaster/>
       </div>
     )
     

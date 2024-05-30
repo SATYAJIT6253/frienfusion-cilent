@@ -2,37 +2,38 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {axiosClient} from'../../pages/utils/axiosCilent';
 export const getmyinformation = createAsyncThunk('/user/getmyinformatio',async(body,thunkAPI)=>{
         try {
-            thunkAPI.dispatch(setloading(true));
+           
             const response = await axiosClient.get('/user/getmyinformation');
             // console.log("data from api",response.result);
             return response.result;
         } catch (error) {
             return Promise.reject(error);
-        }finally{
-            thunkAPI.dispatch(setloading(false));
         }
 })
-export const updateprofile = createAsyncThunk('/user/updatemyprofile',async(body,thunkAPI)=>{
+export const updateprofile = createAsyncThunk('/user/updatemyprofile',async(body)=>{
     try {
-        thunkAPI.dispatch(setloading(true));
+        
         const response = await axiosClient.put('/user/upadtemyprofile');
         // console.log("data from updateprofile api",response.result);
         return response.result;
     } catch (error) {
         return Promise.reject(error)
-    }finally{
-        thunkAPI.dispatch(setloading(false));
     }
 })
 export const appConfigSlice = createSlice({
     name :'appConfigSlice',
     initialState:{
         isloading : false,
+        toastdata :{},
         myProfile : null,
+
     },
     reducers:{
         setloading : (state,action)=>{
             state.isloading = action.payload;
+        },
+        showToast : (state,action)=>{
+            state.toastdata = action.payload;
         }
     },
     extraReducers : (builder)=>{
@@ -45,5 +46,5 @@ export const appConfigSlice = createSlice({
         })
     }
 })
-export const {setloading} = appConfigSlice.actions;
+export const {setloading,showToast} = appConfigSlice.actions;
 export default appConfigSlice.reducer;
