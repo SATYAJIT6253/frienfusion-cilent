@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Avtar from "../../avtar/Avtar";
 import "./follower.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { followunfollowuser, getfeedData } from "../../../Redux/slices/feedConfigure";
+import { followunfollowuser } from "../../Redux/slices/feedConfigure";
 import { useNavigate } from "react-router-dom";
-import { getuserinformation } from "../../../Redux/slices/postConfigure";
+
+import Avtar from "../avtar/Avtar";
 function Follwer({ user }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();

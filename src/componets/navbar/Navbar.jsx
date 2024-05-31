@@ -7,8 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { setloading, showToast } from "../../Redux/slices/appConfigure";
 import { axiosClient } from "../../pages/utils/axiosCilent";
 import { KEY_ACESS_TOKEN, removeItem } from "../../pages/utils/localStoragemanager";
-import { TOAST_SUCCESS } from "../../App";
-import { Toaster } from "react-hot-toast";
 
 
 function Navbar() {
@@ -21,7 +19,9 @@ function Navbar() {
        dispatch(setloading(true))
        const response = await axiosClient.post('/auth/logout');
        removeItem(KEY_ACESS_TOKEN);
+       
        dispatch(setloading(false));
+       navigate("/login");
        
       
     } catch (error) {
@@ -41,7 +41,7 @@ function Navbar() {
         </div>
         <div className="rightside" onClick={()=>navigate(`/profile/${myprofile?._id}`)}>
           <div >
-            <Avtar />
+            <Avtar src={myprofile?.avatar?.url} />
           </div>
 
           <div className="logout-cont" onClick={logouthandeler}>

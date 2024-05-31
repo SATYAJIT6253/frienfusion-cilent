@@ -39,7 +39,10 @@ function CreatePost() {
       }))
       dispatch(setloading(false));
     } catch (error) {
-      
+      dispatch(showToast({
+        type:TOAST_FAILURE,
+        message: error
+      }))
       console.log(error);
     } finally {
       setCaption("");
@@ -53,15 +56,10 @@ function CreatePost() {
         <Avtar />
       </div>
       <div className="right-section">
-        <input
-          type="text"
-          name=""
-          id=""
-          value={caption}
-          onChange={(e) => {
-            setCaption(e.target.value);
-          }}
-        />
+        <textarea name="" type="text" value={caption} style={{ width: "460px", height: "120px" }} 
+        onChange={(e) => {setCaption(e.target.value)}}>
+
+        </textarea>
 
         <div className="img-container">
           <img
@@ -84,14 +82,13 @@ function CreatePost() {
               id="inputImg"
               type="file"
               accept="image/*"
-              // style={{ visibility: "hidden" }}
+              style={{ visibility: "hidden" }}
               onChange={handleImageChange}
             />
           </div>
           <button className="post-btn button-62" onClick={postHandler}>
             Post
           </button >
-          <button className="post-btn button-62" >delete post</button>
         </div>
       </div>
     </div>

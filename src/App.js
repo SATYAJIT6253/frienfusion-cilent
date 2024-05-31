@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import LoadingBar from 'react-top-loading-bar';
 import RequireLogin from "./componets/RequireLogin";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export const TOAST_SUCCESS = "toast_success";
 export const TOAST_FAILURE = "toast_failure";
@@ -58,7 +58,7 @@ function App() {
             <Route path="/updateprofile" element={<Updateprofile/>}/>
           </Route>
         </Route>
-        <Route >
+        <Route element={<RequireLogin/>} >
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />}/>
           

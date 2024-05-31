@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import {axiosClient} from'../../pages/utils/axiosCilent';
+import Profile from "../../componets/profile/Profile";
 
 export const getuserinformation = createAsyncThunk('user/getuserprofile',async(body)=>{
         try {
@@ -17,6 +18,16 @@ export const likeandunlikepost = createAsyncThunk('posts/like',async(body)=>{
        
         const response = await axiosClient.post('/posts/like',body);
         // console.log("response from likeunlike api",response);
+        return response.result.post;
+    } catch (error) {
+        return Promise.reject(error);
+    }
+})
+export const deletepost = createAsyncThunk('/posts/',async(body)=>{
+    try {
+       
+        const response = await axiosClient.delete('/posts/',body);
+        console.log("response from delete api",response);
         return response.result.post;
     } catch (error) {
         return Promise.reject(error);
@@ -42,6 +53,9 @@ export const postConfigSlice = createSlice({
                 state.userProfile.posts[index] = post;
             }
             
+        })
+        .addCase(deletepost.fulfilled,(state,action)=>{
+            state.userProfile = action.payload;
         })
         
     }

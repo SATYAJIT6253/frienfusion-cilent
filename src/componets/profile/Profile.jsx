@@ -13,7 +13,7 @@ function Profile() {
   const [ismyProfile, setIsMyProfile] = useState(false);
   const myprofile = useSelector((state) => state.appconfigreducer.myProfile);
   
-  const avtar = myprofile?.avatar?.url;
+  // const avtar = myprofile?.avatar?.url;
   const dispatch = useDispatch();
   const params = useParams();
   const [isFollowing,setIsFollowing] = useState(false);
@@ -27,6 +27,17 @@ function Profile() {
       })
     );
     
+  }
+  function handleImageChange(e) {
+    const file = e.target.files[0];
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      if (fileReader.readyState === fileReader.DONE) {
+        // setpostImg(fileReader.result);
+        console.log("img data", fileReader.result);
+      }
+    };
   }
   useEffect(() => {
     

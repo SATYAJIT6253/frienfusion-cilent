@@ -8,6 +8,7 @@ import { KEY_ACESS_TOKEN, removeItem } from "../../pages/utils/localStoragemanag
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { TOAST_FAILURE } from "../../App";
+import { BsCardImage } from "react-icons/bs";
 function Updateprofile() {
   const myprofile = useSelector((state) => state.appconfigreducer.myProfile);
   const [name, setname] = useState("");
@@ -24,14 +25,14 @@ function Updateprofile() {
       fileReader.onload = () => {
         if (fileReader.readyState === fileReader.DONE) {
           setUserImg(fileReader.result);
-          // console.log("img data", fileReader.result);
+          console.log("img data", fileReader.result);
         }
       };
     }
   }
   function submithandeler(e)
   {
-      
+      e.preventDefault();
       dispatch(updateprofile({
         name,bio,Userimg
       }))
@@ -70,7 +71,9 @@ function Updateprofile() {
               type="file"
               accept="image/*"
               onChange={handleImageChange}
+              style={{display:"none"}}
             />
+           
           </div>
         </div>
 

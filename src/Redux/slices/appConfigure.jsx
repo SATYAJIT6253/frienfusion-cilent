@@ -13,8 +13,8 @@ export const getmyinformation = createAsyncThunk('/user/getmyinformatio',async(b
 export const updateprofile = createAsyncThunk('/user/updatemyprofile',async(body)=>{
     try {
         
-        const response = await axiosClient.put('/user/upadtemyprofile');
-        // console.log("data from updateprofile api",response.result);
+        const response = await axiosClient.put('/user/updatemyprofile',body);
+        console.log("data from updateprofile api",response.result);
         return response.result;
     } catch (error) {
         return Promise.reject(error)

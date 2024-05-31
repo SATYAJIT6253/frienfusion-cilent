@@ -23,7 +23,7 @@ function Signup()
         type:TOAST_SUCCESS,
         message : result.result
       }))
-      navigate("/login");
+      
     } catch (error) {
       console.log(error);
     }
