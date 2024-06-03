@@ -4,14 +4,14 @@ import { getItem, removeItem, setItem } from './localStoragemanager';
 import { KEY_ACESS_TOKEN } from './localStoragemanager';
 
 import { setloading, showToast } from '../../Redux/slices/appConfigure';
-import { TOAST_FAILURE,TOAST_SUCCESS } from '../../App';
+import { TOAST_FAILURE} from '../../App';
 import {store}from '../../Redux/Store.jsx';
 
 export const axiosClient = axios.create({
-    baseURL:process.env.CILENT_BASEURL,
+    baseURL:'https://friendfusion-v925.onrender.com',
     withCredentials:true,
 });
-let  baseURL = process.env.CILENT_BASEURL ;
+let  baseURL = 'https://friendfusion-v925.onrender.com'
 axiosClient.interceptors.request.use(
     (request)=>{
         const acesstoken = getItem(KEY_ACESS_TOKEN);
