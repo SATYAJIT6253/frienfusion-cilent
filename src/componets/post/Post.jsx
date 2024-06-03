@@ -57,10 +57,7 @@ function Post({post}) {
           </div>
           <p className="caption">{post?.caption}</p>
           <h4>{post?.timeago}</h4>
-          {
-            ismyProfile &&
-            <button> delete post</button>
-          }
+         
          
         </div>
       </div>

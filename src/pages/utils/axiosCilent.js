@@ -8,10 +8,10 @@ import { TOAST_FAILURE,TOAST_SUCCESS } from '../../App';
 import {store}from '../../Redux/Store.jsx';
 
 export const axiosClient = axios.create({
-    baseURL:'https://friendfusion-v925.onrender.com',
+    baseURL:process.env.CILENT_BASEURL,
     withCredentials:true,
 });
-let  baseURL = 'https://friendfusion-v925.onrender.com'
+let  baseURL = process.env.CILENT_BASEURL ;
 axiosClient.interceptors.request.use(
     (request)=>{
         const acesstoken = getItem(KEY_ACESS_TOKEN);
