@@ -14,13 +14,13 @@ function Home() {
   },[])
  return (
 
-    <>
-    <Navbar />
+    <div className='w-full'>
+      <Navbar />
       <div className="outlet" style={{ marginTop: '50px' }}  >
         <Outlet />
       </div>
 
-    </>
+    </div>
   )
 }
 

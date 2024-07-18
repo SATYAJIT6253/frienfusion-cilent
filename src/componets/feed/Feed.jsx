@@ -8,9 +8,6 @@ import Follwer from "../follower/Follwer";
 function Feed() {
   const dispatch = useDispatch();
   const feedData = useSelector((state)=> state.feedConfigreducer.feedData);
-  // console.log(feedData?.followings);
-  // console.log("----------");
-  // console.log(feedData?.suggestions);
 useEffect(()=>{
   dispatch(getfeedData())
   

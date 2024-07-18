@@ -38,17 +38,11 @@ function App() {
             break;
        
       }
-      // if(toastdata.type == TOAST_SUCCESS)
-      //   {
-      //     toast.success(toastdata.message);
-      //   }else if(toastdata.type == TOAST_FAILURE)
-      //   {
-      //       toast.error(toastdata.message);
-      //   }
+     
     },[toastdata])
   return (
       
-    <div className="App">
+    <div className="w-full">
       <LoadingBar color="#000" ref={loadingRef} />
       <Routes>
         <Route element={<RequireUser/>} >
