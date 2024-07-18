@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import "./feed.scss";
+import React from "react";
 import { useEffect } from "react";
 import Post from "../post/Post";
 import { useDispatch, useSelector } from "react-redux";

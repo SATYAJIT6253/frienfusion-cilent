@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "./post.scss";
 import Avtar from "../avtar/Avtar";
 import { useState } from "react";
 import { BiLike } from "react-icons/bi";

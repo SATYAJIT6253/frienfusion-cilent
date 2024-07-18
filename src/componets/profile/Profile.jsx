@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Post from "../post/Post";
-import avtar from "../../images/avtar.png";
-import "./profile.scss";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import CreatePost from "../ceatepost/CreatePost";
 import { getuserinformation } from "../../Redux/slices/postConfigure";
 import { followunfollowuser } from "../../Redux/slices/feedConfigure";
+import avtar from '../../images/avtar.png'
 function Profile() {
   const navigate = useNavigate();
   const [ismyProfile, setIsMyProfile] = useState(false);
@@ -66,7 +65,7 @@ function Profile() {
           <div>
             <img
               className="h-24 w-24 object-fit border-2 rounded-full"
-              src={userProfile?.avatar?.url}
+              src={userProfile?.avatar?.url || avtar}
               alt=""
             />
             <h2 className="px-3 text-2xl font-serif">{userProfile?.name}</h2>

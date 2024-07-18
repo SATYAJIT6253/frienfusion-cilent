@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./follower.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { followunfollowuser } from "../../Redux/slices/feedConfigure";
 import { useNavigate } from "react-router-dom";
