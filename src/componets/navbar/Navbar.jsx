@@ -28,7 +28,7 @@ function Navbar() {
   }
 
   return (
-    <div className="w-3/4 mx-auto bg-gradient-to-r from-sky-500 to-indigo-500 h-30">
+    <div className="w-5/6 mx-auto bg-gradient-to-r from-sky-500 to-indigo-500 h-30 lg:w-4/5">
       <div className="w-full flex flex-row justify-between items-center hover:cursor-pointer">
         <div className="mx-4 text-2xl font-mono">
           <h2

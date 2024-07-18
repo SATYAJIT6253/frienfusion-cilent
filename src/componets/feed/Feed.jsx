@@ -7,33 +7,33 @@ import { getfeedData } from "../../Redux/slices/feedConfigure";
 import Follwer from "../follower/Follwer";
 function Feed() {
   const dispatch = useDispatch();
-  const feedData = useSelector((state)=> state.feedConfigreducer.feedData);
-useEffect(()=>{
-  dispatch(getfeedData())
-  
-},[dispatch])
-  
-  return (
-    <div className="feed">
-      <div className="container">
-        <div className="left-part">
-          {
-            feedData?.posts?.map(post => <Post post={post} key={post._id}/>)
-          }
-         
+  const feedData = useSelector((state) => state.feedConfigreducer.feedData);
+  useEffect(() => {
+    dispatch(getfeedData());
+  }, [dispatch]);
 
-        </div>
-        <div className="right-part">
-          <div className="following">
-            <h2 className="title">You are folllowing</h2>
-            {feedData?.followings?.map(user => <Follwer  key={user._id} user={user} />)}
-           
+  return (
+    <div className="flex flex-col w-5/6 mx-auto lg:w-3/4 lg:flex-row lg:justify-around">
+      <div className="w-full lg:w-1/2">
+        {feedData?.posts?.map((post) => (
+          <Post post={post} key={post._id} />
+        ))}
+      </div>
+      <div className="lg:w-1/3">
+        
+          <div className="">
+            <h2 className="text-xl font-medium py-4">You are folllowing</h2>
+            {feedData?.followings?.map((user) => (
+              <Follwer key={user._id} user={user} />
+            ))}
           </div>
-          <div className="suggestion">
+          <div className="text-xl font-medium py-4 mb-2">
             <h2 className="title">suggestion for you</h2>
-            {feedData?.suggestions?.map(user => <Follwer key={user._id} user={user}/>)}
+            {feedData?.suggestions?.map((user) => (
+              <Follwer key={user._id} user={user} />
+            ))}
           </div>
-        </div>
+        
       </div>
     </div>
   );

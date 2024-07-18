@@ -16,7 +16,6 @@ function Follwer({ user }) {
         useridtofollow: user._id,
       })
     );
-    
   }
   useEffect(() => {
     if (feedData.followings.find((item) => item._id === user._id)) {
@@ -26,16 +25,22 @@ function Follwer({ user }) {
     }
   }, [feedData]);
   return (
-    <div className="follower">
-      <div onClick={() => {navigate(`/profile/${user?._id}`)}} >
-        <Avtar src={user?.avatar?.url}/>
-        <h4 className="name">{user?.name}</h4>
+    <div className="w-full bg-zinc-300 rounded-xl flex mt-2 gap-16 h-fit p-3">
+      <div
+        onClick={() => {
+          navigate(`/profile/${user?._id}`);
+        }}
+        className="flex w-2/3 gap-4 items-center"
+      >
+        <Avtar src={user?.avatar?.url} />
+        <h4 className="text-xl  font-mono">{user?.name}</h4>
       </div>
-      
-      <button className="follow-btn" onClick={followunfollowhandeler}>
+      <button
+        className="relative inline-flex items-center justify-center p-0.5 overflow-hidden font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 w-1/3 h-10 my-auto mr-2 text-base hover:cursor-pointer hover:bg-cyan-400"
+        onClick={followunfollowhandeler}
+      >
         {isFollwing ? "unfollow" : "follow"}
       </button>
-    
     </div>
   );
 }
