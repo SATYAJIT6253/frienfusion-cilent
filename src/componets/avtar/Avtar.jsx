@@ -1,5 +1,4 @@
 import React from 'react'
-import'./avtar.scss'
 import userimg from '../../images/avtar.png'
 function Avtar({src}) {
   return (
