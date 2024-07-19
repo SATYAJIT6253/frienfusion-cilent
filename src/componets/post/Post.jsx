@@ -17,7 +17,6 @@ function Post({ post }) {
   const [ismyProfile, setIsMyProfile] = useState();
   const myprofile = useSelector((state) => state.appconfigreducer.myProfile);
   const params = useParams();
-  console.log(post);
   async function postlikehandeker() {
     dispatch(
       likeandunlikepost({

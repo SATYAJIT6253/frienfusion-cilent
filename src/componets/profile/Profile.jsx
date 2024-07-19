@@ -11,7 +11,7 @@ function Profile() {
   const [ismyProfile, setIsMyProfile] = useState(false);
   const myprofile = useSelector((state) => state.appconfigreducer.myProfile);
 
-  // const avtar = myprofile?.avatar?.url;
+  const avtar = myprofile?.avatar?.url;
   const dispatch = useDispatch();
   const params = useParams();
   const [isFollowing, setIsFollowing] = useState(false);
