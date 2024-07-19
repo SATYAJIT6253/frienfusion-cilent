@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import "./createpost.scss";
-import Avtar from "../avtar/Avtar";
+import React, {  useState } from "react";
 import { BsCardImage } from "react-icons/bs";
 // import postimg from "../../images/postimg.png";
 import { useDispatch, useSelector } from "react-redux";

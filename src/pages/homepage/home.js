@@ -1,6 +1,3 @@
-
-import { axiosClient } from '../utils/axiosCilent';
-import './home.scss';
 import Navbar from '../../componets/navbar/Navbar';
 import { Outlet } from 'react-router-dom';
 import { useDispatch } from 'react-redux';

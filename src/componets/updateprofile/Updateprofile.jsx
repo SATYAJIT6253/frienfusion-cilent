@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./updateprofile.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { showToast, updateprofile } from "../../Redux/slices/appConfigure";
 import { axiosClient } from "../../pages/utils/axiosCilent";
