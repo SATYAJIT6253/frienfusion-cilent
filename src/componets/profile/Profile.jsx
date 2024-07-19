@@ -5,12 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import CreatePost from "../ceatepost/CreatePost";
 import { getuserinformation } from "../../Redux/slices/postConfigure";
 import { followunfollowuser } from "../../Redux/slices/feedConfigure";
-import avtar from '../../images/avtar.png'
 function Profile() {
   const navigate = useNavigate();
   const [ismyProfile, setIsMyProfile] = useState(false);
   const myprofile = useSelector((state) => state.appconfigreducer.myProfile);
-
   const avtar = myprofile?.avatar?.url;
   const dispatch = useDispatch();
   const params = useParams();
@@ -26,17 +24,6 @@ function Profile() {
         useridtofollow: params.userId,
       })
     );
-  }
-  function handleImageChange(e) {
-    const file = e.target.files[0];
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file);
-    fileReader.onload = () => {
-      if (fileReader.readyState === fileReader.DONE) {
-        // setpostImg(fileReader.result);
-        console.log("img data", fileReader.result);
-      }
-    };
   }
   useEffect(() => {
     dispatch(getuserinformation({ userId: params?.userId }));

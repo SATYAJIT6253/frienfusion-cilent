@@ -4,8 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { axiosClient } from '../utils/axiosCilent';
 import { KEY_ACESS_TOKEN, setItem } from '../utils/localStoragemanager';
 import { useDispatch } from 'react-redux';
-import { setloading, showToast } from '../../Redux/slices/appConfigure';
-import { TOAST_FAILURE, TOAST_SUCCESS } from '../../App';
 import { Toaster } from 'react-hot-toast';
 
 function Login() {
